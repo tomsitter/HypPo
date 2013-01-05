@@ -504,17 +504,6 @@ if isappdata(handles.figure1, 'data')
     set(hObject, 'Enable', 'on')
 end
 
-function push_parms_ClickedCallback(hObject, eventdata, handles)
-% hObject    handle to push_parms (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-if isappdata(handles.figure1, 'data')
-    data = getappdata(handles.figure1, 'data');
-    assignin('base', 'data_parms', data.parms);
-    updateStatusBox(handles, evalc('parms = data.parms'));
-end
-
-
 function push_normalize_ClickedCallback(hObject, eventdata, handles)
 % hObject    handle to push_normalize (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -1485,4 +1474,16 @@ function polarization_thermal=ThermalP(gamma)
     kB = 1.380648e-23 ; %T %J/K
     
     polarization_thermal = (u*Bo)/(kB*T)
+
+
 % --------------------------------------------------------------------
+function push_parms_ClickedCallback(hObject, eventdata, handles)
+% hObject    handle to push_parms (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+if isappdata(handles.figure1, 'data')
+    data = getappdata(handles.figure1, 'data');
+    assignin('base', 'data_parms', data.parms);
+    str = sprintf(data.parms);
+    updateStatusBox
+end
