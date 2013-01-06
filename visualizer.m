@@ -1427,6 +1427,8 @@ function [data, moles]=idealmoles(data, phantom_type)
     
     if strcmpi(phantom_type, 'hyper')
         phantom = data.getHyperPhantom;
+        %for displaying to user later in this function
+        phantom_type = 'hyperpolarized';
     else
         phantom = data.getThermalPhantom;
     end
@@ -1436,19 +1438,25 @@ function [data, moles]=idealmoles(data, phantom_type)
     fV = phantom.frac_vol;
     b = phantom.iso_abund;
         
-    msg = sprintf(['\nCurrent %s phantom has: \n' ...
-                    'Pressure: %f atm\n' ...
-                    'Volume: %f L\n' ...
-                    'Fractional Volume: %f\n' ...
-                    'Isotopic Abundance: %f\n'], phantom_type, P, V, fV, b);
-    disp(msg);
+    if (P == -1)
+        reply = 'N';
+    else
+        msg = sprintf(['\nCurrent %s phantom has: \n' ...
+                        'Pressure: %f atm\n' ...
+                        'Volume: %f L\n' ...
+                        'Fractional Volume: %f\n' ...
+                        'Isotopic Abundance: %f\n'], phantom_type, P, V, fV, b);
+        disp(msg);
 
-    reply = input('Are these the correct parameters? (Y/N): ', 's');
-    if isempty(reply)
-        reply = 'Y';
+        reply = input('Are these the correct parameters? (Y/N): ', 's');
+        if isempty(reply)
+            reply = 'Y';
+        end
     end
-    
+
     if strcmpi(reply, 'N')
+        msg = sprintf('Enter the correct parameters for the %s phantom: ', phantom_type);
+        disp(msg);
         P = input('Enter pressure (atm): ');
         phantom.pressure = P;
         V = input('Enter volume (L): ');
