@@ -22,7 +22,7 @@ function varargout = visualizer(varargin)
 
 % Edit the above text to modify the response to help visualizer
 
-% Last Modified by GUIDE v2.5 05-Jan-2013 18:12:10
+% Last Modified by GUIDE v2.5 07-Jan-2013 14:15:41
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1494,3 +1494,21 @@ function polarization_thermal=ThermalP(gamma)
     
     polarization_thermal = (u*Bo)/(kB*T)
 % --------------------------------------------------------------------
+
+
+% --------------------------------------------------------------------
+function push_restart_ClickedCallback(hObject, eventdata, handles)
+% hObject    handle to push_restart (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+choice = questdlg('This will restart the program. All unsaved data will be lost! Do you wish to continue?', ...
+                  'Restart Program?', ...
+                  'Yes', 'No', 'No');
+switch choice
+    case 'Yes'
+        close(gcbf)
+        visualizer
+    case 'No'
+        ;
+end

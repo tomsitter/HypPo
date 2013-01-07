@@ -28,6 +28,9 @@ function data = automateSNR(handles)
         end
         
         if isempty(data.getNoiRangeAvg)
+            %get number of datapoints used in signal selection
+            %select that amount of datapoints from end of spectrum for
+            %noise calculation
             sigrange = data.getSigRangeBinAvg;
             sig_span = sigrange(end) - sigrange(end-1);
             noi_start = fix(noi_end-sig_span);
