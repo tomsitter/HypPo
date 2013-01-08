@@ -157,15 +157,17 @@ function edit_normalize_Callback(hObject, eventdata, handles)
 % --------------------------------------------------------------------
 function drop_sig_noi_Callback(hObject, eventdata, handles)
 
-choice = get(hObject, 'Value');
-
-switch choice
- case 1
-     set(handles.check_noisefile, 'val', 0);
-     set(handles.check_noisefile, 'Visible', 'off');
- case 2
-     set(handles.check_noisefile, 'Visible', 'on');
-end
+%Display checkbox to get noise from seperate gui
+%Deprecated, can be done by loading another file into visualizer
+% choice = get(hObject, 'Value');
+% 
+% switch choice
+%  case 1
+%      set(handles.check_noisefile, 'val', 0);
+%      set(handles.check_noisefile, 'Visible', 'off');
+%  case 2
+%      set(handles.check_noisefile, 'Visible', 'on');
+% end
 
 %% Push Buttons
 % --------------------------------------------------------------------
@@ -943,32 +945,32 @@ if isappdata(handles.figure1, 'data')
     end
 end
 
-function check_noisefile_Callback(hObject, eventdata, handles)
+% function check_noisefile_Callback(hObject, eventdata, handles)
 % hObject    handle to check_noisefile (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+% 
 % Hint: get(hObject,'Value') returns toggle state of check_noisefile
-try
-    if get(hObject, 'Value') == 1
-        snr_gui_noise('visualizer', handles.figure1);
-        data = getappdata(handles.figure1, 'data');
-
-        %msg = sprintf('Noise: %f', noise);
-        updateStatusBox(handles, sprintf('Noise: %.3f', data.noisefile.noise));
-    else
-        data = getappdata(handles.figure1, 'data');
-        if data.noisefile.noise > -1.0
-            data.noisefile.noise = -1.0;
-            data.noisefile.filename = -1.0;
-            data.noisefile.noi_range = [-1.0 -1.0];
-            data.noisefile.noi_range_bin = [-1.0 -1.0];
-        end
-        updateStatusBox(handles, sprintf('Noise file data cleared'));
-    end
-catch err
-    disp(err.message);
-end
+% try
+%     if get(hObject, 'Value') == 1
+%         snr_gui_noise('visualizer', handles.figure1);
+%         data = getappdata(handles.figure1, 'data');
+% 
+%         msg = sprintf('Noise: %f', noise);
+%         updateStatusBox(handles, sprintf('Noise: %.3f', data.noisefile.noise));
+%     else
+%         data = getappdata(handles.figure1, 'data');
+%         if data.noisefile.noise > -1.0
+%             data.noisefile.noise = -1.0;
+%             data.noisefile.filename = -1.0;
+%             data.noisefile.noi_range = [-1.0 -1.0];
+%             data.noisefile.noi_range_bin = [-1.0 -1.0];
+%         end
+%         updateStatusBox(handles, sprintf('Noise file data cleared'));
+%     end
+% catch err
+%     disp(err.message);
+% end
 
 %% Toggles
 % --------------------------------------------------------------------
