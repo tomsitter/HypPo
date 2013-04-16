@@ -19,6 +19,7 @@ ydim = NaN;
 
 %when waterfall is turned off, restore any saved axes dimensions
 if strcmp(callingfunc, 'tog_waterfall_OffCallback')
+    set(handles.push_flipangle, 'Enable', 'off'); %only used for 2D waterfall
     %determine current xaxis units
     if get(handles.radio_ppm, 'Value') == 1 %user wants ppm
         if isappdata(handles.axes1, 'xlim_ppm')

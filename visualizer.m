@@ -22,7 +22,7 @@ function varargout = visualizer(varargin)
 
 % Edit the above text to modify the response to help visualizer
 
-% Last Modified by GUIDE v2.5 07-Jan-2013 14:15:41
+% Last Modified by GUIDE v2.5 16-Apr-2013 16:49:04
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -181,31 +181,31 @@ function push_save_ClickedCallback(hObject, eventdata, handles)
 if isappdata(handles.figure1, 'data')
     data = getappdata(handles.figure1, 'data');
     
-    if isappdata(handles.figure1, 'dataArr')
-        dataArr = getappdata(handles.figure1, 'dataArr');
-        curFileIndex = getappdata(handles.figure1, 'curFileIndex');
-        dataArr(curFileIndex) = data;
+%     if isappdata(handles.figure1, 'dataArr')
+%         dataArr = getappdata(handles.figure1, 'dataArr');
+%         curFileIndex = getappdata(handles.figure1, 'curFileIndex');
+%         dataArr(curFileIndex) = data;
         
-        for i = 1:length(dataArr)
-            dataArr(i).index = 1;
-            varName = sprintf('hypObj%d', i);
-            assignin('base', varName, dataArr(i));
-        end
+%         for i = 1:length(dataArr)
+%             dataArr(i).index = 1;
+%             varName = sprintf('hypObj%d', i);
+%             assignin('base', varName, dataArr(i));
+%         end
     
-        try
-            uisave('dataArr');
-        catch err
-            disp(err.message);
-        end
-    else
-        assignin('base', hypObj, data);
+%         try
+%             uisave('dataArr');
+%         catch err
+%             disp(err.message);
+%         end
+%     else
+        assignin('base', 'specdata', data);
         
         try
             uisave('data');
         catch err
             disp(err.message)
         end
-    end
+%     end
 else
     msgbox('No loaded data');
 end
@@ -515,6 +515,16 @@ if isappdata(handles.figure1, 'data')
     assignin('base', 'data_parms', data.parms);
     updateStatusBox(handles, evalc('parms = data.parms'));
 end
+
+function push_flipangle_ClickedCallback(hObject, eventdata, handles)
+% hObject    handle to push_flipangle (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+angle = flipangle( handles );
+
+data = getappdata(handles.figure1, 'data');
+setappdata(handles.figure1, 'data', data.setFlipAngle( angle ));
 
 
 function push_normalize_ClickedCallback(hObject, eventdata, handles)

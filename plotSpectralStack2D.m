@@ -34,3 +34,5 @@ xlabel('Acquisition')
 ylabel('Peak Signal')
 
 xlim([0 numspec]);
+
+set(handles.push_flipangle, 'Enable', 'on');
