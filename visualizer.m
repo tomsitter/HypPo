@@ -513,7 +513,9 @@ function push_parms_ClickedCallback(hObject, eventdata, handles)
 if isappdata(handles.figure1, 'data')
     data = getappdata(handles.figure1, 'data');
     assignin('base', 'data_parms', data.parms);
-    updateStatusBox(handles, evalc('parms = data.parms'));
+    updateStatusBox(handles, evalc('disp(data.parms)'));
+else
+    updateStatusBox(handles, 'No scan parameters found')
 end
 
 function push_flipangle_ClickedCallback(hObject, eventdata, handles)
@@ -1521,6 +1523,6 @@ switch choice
     case 'Yes'
         close(gcbf)
         visualizer
-    case 'No'
+    otherwise
         ;
 end
