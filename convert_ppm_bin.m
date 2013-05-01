@@ -9,7 +9,7 @@ function val = convert_ppm_bin(handles, orig_val, convertTo)
 ppm_axis = get_new_axis(handles, 'ppm');
 
 if strcmp(convertTo, 'bin')
-    val = find(ppm_axis > orig_val, 1);
+    val = find(ppm_axis > orig_val, 1) - 1;
 elseif strcmp(convertTo, 'ppm')
     val = ppm_axis(orig_val-1);
 end
