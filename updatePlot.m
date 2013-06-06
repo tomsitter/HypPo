@@ -19,5 +19,6 @@ function updatePlot(handles)
         plot(xrange(1):xrange(2), dpts(xrange(1):xrange(2)), 'ro', 'MarkerSize', 3);
     end
     xlim([1 data.parms.samples]);
+%     ylim([min(dpts) max(dpts)]);
     hold off;
 end
