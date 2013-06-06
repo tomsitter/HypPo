@@ -75,7 +75,7 @@ noisedata = struct('noise', -1.0, 'filename', data.filename, ...
 setappdata(handles.figure1, 'noisedata', noisedata);
 
 updatePlot(handles);
-
+axis tight;
 % Set the motion detector.
 % set(handles.figure1,'windowbuttonmotionfcn',{@fh_wbmfcn, handles});
 
