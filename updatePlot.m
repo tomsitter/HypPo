@@ -10,7 +10,7 @@ function updatePlot(handles)
     end
     
     %plot current spectrum
-    plot(1:data.parms.samples, dpts);
+    plot(1:data.parms.samples*data.parms.padfactor, dpts);
     
     %plot noise region as red circles
     if not(isempty(data.getNoiRange))
