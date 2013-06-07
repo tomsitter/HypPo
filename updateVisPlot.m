@@ -257,9 +257,10 @@ if frqdomain
     if get(handles.radio_ppm, 'Value') == 1
         %calculate chemical shift
         xaxis = ppmAxis(data, offset);
+        xlbl = 'Chemical Shift (ppm)';
     else
         xaxis = frequencyAxis(data);
-        xlbl = 'frequency (Hz), f - fo';
+        xlbl = 'Frequency (Hz), f - fo';
     end
 else
     dpts = dpts(1:data.parms.samples);
