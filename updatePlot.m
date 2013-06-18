@@ -10,7 +10,7 @@ function updatePlot(handles)
     end
     
     %plot current spectrum
-    plot(1:data.parms.samples, dpts);
+    plot(1:data.parms.samples*data.parms.padfactor, dpts);
     
     %plot noise region as red circles
     if not(isempty(data.getNoiRange))
@@ -19,5 +19,6 @@ function updatePlot(handles)
         plot(xrange(1):xrange(2), dpts(xrange(1):xrange(2)), 'ro', 'MarkerSize', 3);
     end
     xlim([1 data.parms.samples]);
+%     ylim([min(dpts) max(dpts)]);
     hold off;
 end
